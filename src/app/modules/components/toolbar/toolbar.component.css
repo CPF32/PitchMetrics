@@ -1,0 +1,12 @@
+.mat-toolbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: #fff;
+}
+
+.pm-img {
+    width: 160px;
+}
