@@ -10,6 +10,15 @@
     width: 100%;
 }
 
+.astro-logo {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 45px
+
+}
+
+
 @media screen and (min-width: 600px) {
     .content {
         top: 64px;
@@ -29,3 +38,4 @@
         max-height: calc(100% - 56px);
     }
 }
+
