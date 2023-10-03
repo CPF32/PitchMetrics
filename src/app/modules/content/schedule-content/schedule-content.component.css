@@ -61,8 +61,16 @@
     }
 
     .card {
-        min-width: 300px;
-        min-height: 360px;
+        min-width: 280px;
+        min-height: 380px;
+    }
+
+    .card:first-child {
+        padding-top: 20px;
+    }
+
+    .card:last-child{
+        padding-bottom: 20px;
     }
 }
 
