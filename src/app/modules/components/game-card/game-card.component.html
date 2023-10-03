@@ -1,8 +1,8 @@
 <div class="gc-wrapper">
-	<div class="gc-box" [@flipState]="flip">
+	<div class="gc-box" [@flipState]="flip" (click)="toDashboard()">
 		<div class="gc-box__side gc-box__front">
             <div class="header">
-                <mat-icon class="icon" (click)="toggleFlip()">flip_to_back</mat-icon>
+                <mat-icon class="icon pad" (click)="toggleFlip($event)">flip_to_back</mat-icon>
                 <div class="date">{{dayMonthYear}}</div>
             </div>            
             <div class="content">
@@ -16,7 +16,7 @@
 		</div>
 		<div class="gc-box__side gc-box__back">
             <div class="header">
-                <mat-icon class="icon" (click)="toggleFlip()">flip_to_back</mat-icon>
+                <mat-icon class="icon pad" (click)="toggleFlip($event)">flip_to_back</mat-icon>
                 <div class="date">Pitcher Log</div>
             </div>   
             <div class="backlist">

@@ -40,10 +40,6 @@
     transform         : rotateY(-180deg);
 }
 
-/* .gc-box__back:hover {
-    transform: scale(1.05);
-} */
-
 .gc-box__front:hover {
     transform: scale(1.05);
 }
@@ -64,13 +60,13 @@
     height: 20%;
     display: flex;
     align-items: center;
-    font-size: 18pt;
+    font-size: 20pt;
     font-weight: 400;
     
 }
 
 .date {
-    margin-left: 18px;
+    margin-left: 15px;
     color: #323232;
 }
 
@@ -153,6 +149,10 @@ li {
     font-size: 18px;
 }
 
+.pad {
+    padding: 10px;
+}
+
 .mat-icon:hover {
     opacity: 85%;
 }
@@ -164,8 +164,8 @@ li {
 
 .icon {
     position: absolute;
-    top: 5px;
-    right: 3px;
+    top: 0px;
+    right: 0px;
     z-index: 1000;
 }
 

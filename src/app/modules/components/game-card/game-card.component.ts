@@ -25,6 +25,7 @@ export class GameCardComponent implements OnInit {
 
   @Input() homeBackground!: string;
   @Input() awayBackground!: string;
+  @Input() gameID!: string;
   @Input() homeLogo!: string;
   @Input() awayLogo!: string;
   @Input() gameDate!: string;
@@ -52,8 +53,13 @@ export class GameCardComponent implements OnInit {
 
   flip: string = 'inactive';
 
-  toggleFlip() {
+  toggleFlip(event: Event) {
+    event.stopPropagation();
     this.flip = (this.flip == 'inactive') ? 'active' : 'inactive';
+  }
+
+  toDashboard() {
+    this.router.navigate(['/dashboard'])
   }
 
 }

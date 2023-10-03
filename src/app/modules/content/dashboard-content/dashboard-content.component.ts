@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToolbarModule } from '../../components/toolbar/toolbar.module';
 import { MLBPortalService } from '../../services/mlb-portal.service';
+import { CommonModule } from '@angular/common';
+import { GameCardModule } from '../../components/game-card/game-card.module';
 
 
 @Component({
@@ -10,7 +12,7 @@ import { MLBPortalService } from '../../services/mlb-portal.service';
   styleUrls: ['./dashboard-content.component.css'],
   standalone: true,
   providers: [MLBPortalService],
-  imports: [ToolbarModule]
+  imports: [ToolbarModule, GameCardModule, CommonModule]
 })
 
 export class DashboardContentComponent {
