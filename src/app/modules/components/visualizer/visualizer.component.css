@@ -1,0 +1,6 @@
+.visualizer-wrapper{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    background-color: #E8E9EB;
+}

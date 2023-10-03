@@ -10,3 +10,67 @@
 .pm-img {
     width: 160px;
 }
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.details {
+    display: flex;
+}
+
+.home {
+    padding-right: 15px;
+    font-size: small;
+    display: flex;
+}
+
+.away {
+    padding-right: 15px;
+    font-size: small;
+    display: flex;
+}
+
+.date {
+    font-size: small;
+    display: flex;
+}
+
+.field {
+    font-weight: 300;
+    padding-right: 5px;
+
+}
+
+.value {
+    font-weight: 500;
+}
+
+@media screen and (max-width: 699px) {
+    .details {
+        flex-direction: column;
+        height: 100%;
+    }
+
+    .home {
+        height: 33%;
+        display: flex;
+        align-items: center;
+        font-size: x-small;
+    }
+    
+    .away {
+        height: 33%;
+        display: flex;
+        align-items: center;
+        font-size: x-small;
+    }
+    
+    .date {
+        height: 33%;
+        display: flex;
+        align-items: center;
+        font-size: x-small;
+    }
+
+}

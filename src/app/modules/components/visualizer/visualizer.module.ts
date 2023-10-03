@@ -4,13 +4,13 @@ import { CommonModule } from '@angular/common';
 
 import { MatToolbarModule } from '@angular/material/toolbar'
 
-import { ToolbarComponent } from './toolbar.component';
+import { VisualizerComponent } from './visualizer.component';
 import { MLBPortalService } from '../../services/mlb-portal.service';
 
 
 @NgModule({
     declarations: [
-        ToolbarComponent
+        VisualizerComponent
     ],
     imports: [
         MatToolbarModule,
@@ -19,11 +19,11 @@ import { MLBPortalService } from '../../services/mlb-portal.service';
         RouterModule, 
     ],
     exports: [
-        ToolbarComponent
+        VisualizerComponent
     ],
     providers: [
         MLBPortalService
     ]
 })
 
-export class ToolbarModule{}
+export class VisualizerModule{}

@@ -31,19 +31,7 @@ export class GameCardComponent implements OnInit {
   constructor(private router: Router, private mlbPortalService: MLBPortalService) { }
 
   ngOnInit() {
-    const monthNames = [
-      'JAN', 'FEB', 'MAR', 'APR',
-      'MAY', 'JUN', 'JUL', 'AUG',
-      'SEP', 'OCT', 'NOV', 'DEC'
-    ];
-
-    const dateObj = new Date(this.gameData.gameTime);
-
-    const day = dateObj.getDate();
-    const monthIndex = dateObj.getMonth();
-    const year = dateObj.getFullYear();
-
-    this.dayMonthYear = monthNames[monthIndex] + ' ' + day + ', ' + year
+    this.dayMonthYear = this.mlbPortalService.getGameDateReadable(this.gameData.gameTime)
   }
 
   flip: string = 'inactive';
@@ -53,9 +41,11 @@ export class GameCardComponent implements OnInit {
     this.flip = (this.flip == 'inactive') ? 'active' : 'inactive';
   }
 
-  toDashboard(data: any[]) {
+  toDashboard(data: any) {
+    sessionStorage.setItem('homeTeam', data.homeTeam)
+    sessionStorage.setItem('awayTeam', data.awayTeam)
+    sessionStorage.setItem('gameDate', data.gameTime)
 
-    sessionStorage.setItem('gameData', JSON.stringify(data))
     this.router.navigate(['/dashboard'])
   }
 

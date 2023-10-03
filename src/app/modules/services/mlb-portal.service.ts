@@ -24,7 +24,7 @@ export class MLBPortalService {
             return '#EB6E1F'
         }
         else if (team === 'Tampa Bay Rays') {
-            return '#499fe0'
+            return '#8fbce6'
         }
         else if (team === 'Texas Rangers') {
             return '#043278'
@@ -35,6 +35,23 @@ export class MLBPortalService {
         else return '#000'
 
     }
+
+    getGameDateReadable(date: string){
+        const monthNames = [
+            'Jan', 'Feb', 'Mar', 'Apr',
+            'May', 'Jun', 'Jul', 'Aug',
+            'Sep', 'Oct', 'Nov', 'Dec'
+        ];
+      
+        const dateObj = new Date(date);
+      
+        const day = dateObj.getDate();
+        const monthIndex = dateObj.getMonth();
+        const year = dateObj.getFullYear();
+      
+        return monthNames[monthIndex] + ' ' + day + ', ' + year
+    }
+
     setTeamLogo(team: string){
         // WOULD DO THIS FOR ALL TEAMS
         if (team === 'Houston Astros'){

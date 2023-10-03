@@ -4,6 +4,8 @@ import { ToolbarModule } from '../../components/toolbar/toolbar.module';
 import { MLBPortalService } from '../../services/mlb-portal.service';
 import { CommonModule } from '@angular/common';
 import { GameCardModule } from '../../components/game-card/game-card.module';
+import { ListModule } from '../../components/list/list.module';
+import { VisualizerModule } from '../../components/visualizer/visualizer.module';
 
 
 @Component({
@@ -12,25 +14,22 @@ import { GameCardModule } from '../../components/game-card/game-card.module';
   styleUrls: ['./dashboard-content.component.css'],
   standalone: true,
   providers: [MLBPortalService],
-  imports: [ToolbarModule, GameCardModule, CommonModule]
+  imports: [ToolbarModule, GameCardModule, ListModule, VisualizerModule, CommonModule]
 })
 
 export class DashboardContentComponent {
 
-  gameData: string = ''
+  gameData: any[] = []
 
   constructor(private router: Router, private mlbPortalService: MLBPortalService){}
 
   ngOnInit(): void {
-    // may want to do something here
-    let preParsedData = sessionStorage.getItem('gameData')
-    
-    if (preParsedData !== null) {
-      this.gameData = JSON.parse(preParsedData);
-    }
-    else {
-      alert('Pitch Metrics failed to fetch game data. Try Again!')
-    }
+    this.mlbPortalService.getPitchesData().subscribe(data => {
+      const gameDate = sessionStorage.getItem('gameDate');
+
+      this.gameData = data.queryResults.row.filter((row: any) => row.game_date === gameDate);
+      console.log(this.gameData);
+    })
   }
 
   mlbExit(){

@@ -1,5 +1,20 @@
 <mat-toolbar role="heading">
     <mat-toolbar-row>
         <img class="pm-img" src="../../../../assets/images/good-guys/pitch_metrics_logo.png" (click)="backToSchedule()">
+        <span class="spacer"></span>
+        <div *ngIf="selectedGame" class="details">
+            <div class="home">
+                <div class="field">Home:</div>
+                <div class="value">{{homeTeam}}</div>
+            </div>
+            <div class="away">
+                <div class="field">Away:</div>
+                <div class="value">{{awayTeam}}</div>
+            </div>
+            <div class="date">
+                <div class="field">Date:</div>
+                <div class="value">{{cleanDate}}</div>
+            </div>
+        </div>
     </mat-toolbar-row>
 </mat-toolbar>
