@@ -56,8 +56,6 @@ export class ScheduleContentComponent {
         game.awayTeamBG = this.mlbPortalService.setTeamBG(game.awayTeam);
         game.awayTeamLogo =this.mlbPortalService.setTeamLogo(game.awayTeam);
       });
-
-      console.log(this.selectableGames)
     });
   }
 

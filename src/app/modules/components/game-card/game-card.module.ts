@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button'
 
 import { GameCardComponent } from './game-card.component';
 import { HttpClientModule } from '@angular/common/http';
+import { MLBPortalService } from '../../services/mlb-portal.service';
 
 
 @NgModule({
@@ -24,7 +25,9 @@ import { HttpClientModule } from '@angular/common/http';
     exports: [
         GameCardComponent
     ],
-    providers: []
+    providers: [
+        MLBPortalService
+    ]
 })
 
 export class GameCardModule{}

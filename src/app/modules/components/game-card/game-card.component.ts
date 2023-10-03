@@ -1,6 +1,7 @@
-import { Component, OnInit, Input} from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Router } from '@angular/router';
+import { MLBPortalService } from '../../services/mlb-portal.service';
 
 
 @Component({
@@ -23,17 +24,11 @@ import { Router } from '@angular/router';
 
 export class GameCardComponent implements OnInit {
 
-  @Input() homeBackground!: string;
-  @Input() awayBackground!: string;
-  @Input() gameID!: string;
-  @Input() homeLogo!: string;
-  @Input() awayLogo!: string;
-  @Input() gameDate!: string;
-  @Input() pitchers!: [];
+  @Input() gameData!: any
 
   dayMonthYear: string = ''
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private mlbPortalService: MLBPortalService) { }
 
   ngOnInit() {
     const monthNames = [
@@ -42,7 +37,7 @@ export class GameCardComponent implements OnInit {
       'SEP', 'OCT', 'NOV', 'DEC'
     ];
 
-    const dateObj = new Date(this.gameDate);
+    const dateObj = new Date(this.gameData.gameTime);
 
     const day = dateObj.getDate();
     const monthIndex = dateObj.getMonth();
@@ -58,7 +53,9 @@ export class GameCardComponent implements OnInit {
     this.flip = (this.flip == 'inactive') ? 'active' : 'inactive';
   }
 
-  toDashboard() {
+  toDashboard(data: any[]) {
+
+    sessionStorage.setItem('gameData', JSON.stringify(data))
     this.router.navigate(['/dashboard'])
   }
 
