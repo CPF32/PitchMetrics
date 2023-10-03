@@ -7,17 +7,31 @@
 .content {
     position: relative;
     background-color: #E8E9EB;
+    display: grid;
+    gap: 20px; 
     width: 100%;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.content::-webkit-scrollbar { 
+    display: none;
 }
 
 .astro-logo {
-    position: absolute;
+    opacity: 75%;
+    z-index: 10;
+    position: fixed;
     bottom: 10px;
     right: 10px;
-    width: 45px
-
+    width: 40px;
 }
-
 
 @media screen and (min-width: 600px) {
     .content {
@@ -26,6 +40,13 @@
         left: 0;
         right: 0;
         max-height: calc(100% - 64px);
+        padding: 0 25px 0 25px;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+    }
+
+    .card {
+        min-width: 200px;
+        min-height: 240px;
     }
 }
 
@@ -36,6 +57,12 @@
         left: 0;
         right: 0;
         max-height: calc(100% - 56px);
+        grid-template-columns: repeat(1, minmax(360px, 1fr)); 
+    }
+
+    .card {
+        min-width: 300px;
+        min-height: 360px;
     }
 }
 

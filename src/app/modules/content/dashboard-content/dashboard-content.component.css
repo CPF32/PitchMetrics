@@ -10,11 +10,17 @@
     width: 100%;
 }
 
+.content::-webkit-scrollbar { 
+    display: none;
+}
+
 .astro-logo {
-    position: absolute;
+    z-index: 10;
+    opacity: 75%;
+    position: fixed;
     bottom: 10px;
     right: 10px;
-    width: 45px
+    width: 40px;
 }
 
 @media screen and (min-width: 600px) {

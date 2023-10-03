@@ -1,0 +1,32 @@
+<div class="gc-wrapper">
+	<div class="gc-box" [@flipState]="flip">
+		<div class="gc-box__side gc-box__front">
+            <div class="header">
+                <mat-icon class="icon" (click)="toggleFlip()">flip_to_back</mat-icon>
+                <div class="date">{{dayMonthYear}}</div>
+            </div>            
+            <div class="content">
+                <div class="left" [style.backgroundColor]="homeBackground">
+                    <img class="homeLogo" [src]="homeLogo">
+                </div>
+                <div class="right" [style.backgroundColor]="awayBackground">
+                    <img class="awayLogo" [src]="awayLogo">
+                </div>
+            </div>
+		</div>
+		<div class="gc-box__side gc-box__back">
+            <div class="header">
+                <mat-icon class="icon" (click)="toggleFlip()">flip_to_back</mat-icon>
+                <div class="date">Pitcher Log</div>
+            </div>   
+            <div class="backlist">
+                <ul>
+                    <li *ngFor="let pitcher of pitchers; let i = index">
+                        <span class="number">{{ i + 1 }}</span>
+                        <span class="name">{{ pitcher }}</span>
+                    </li>
+                </ul>
+            </div>
+		</div>
+	</div>
+</div>

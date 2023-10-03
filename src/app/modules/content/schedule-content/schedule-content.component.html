@@ -1,6 +1,13 @@
 <div class="schedule-wrapper">
     <toolbar></toolbar>
     <div class="content">
+        <!-- <div class="gameGrid"> -->
+            <game-card class="card" *ngFor="let game of selectableGames"
+                [homeBackground]="game.homeTeamBG" [awayBackground]="game.awayTeamBG"
+                [homeLogo]="game.homeTeamLogo" [awayLogo]="game.awayTeamLogo"
+                [gameDate]="game.gameTime" [pitchers]="game.pitchers">
+            </game-card>
+        <!-- </div> -->
     </div>
     <img class="astro-logo" src="../../../../assets/images/good-guys/astros_logo.png" (click)="mlbExit()">
 </div>
