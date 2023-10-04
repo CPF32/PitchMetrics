@@ -1,12 +1,8 @@
 <div class="dashboard-wrapper">
     <toolbar></toolbar>
     <div class="content">
-        <list *ngIf="open" class="list">
-
-        </list>
-        <visualizer class="vis">
-
-        </visualizer>
+        <list *ngIf="open" class="list"></list>
+        <visualizer *ngIf="(!open && mobile) || !mobile "class="vis"></visualizer>
     </div>
     <button *ngIf="mobile && open" (click)="toggleList()" mat-fab class="fabClose"> 
         <mat-icon>navigate_before</mat-icon>

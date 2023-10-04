@@ -76,6 +76,8 @@ export class ListComponent implements OnInit {
 
     togglePitchSelection(pitch: any, event:any) {
         pitch.selected = event.checked;
+
+        this.mlbPortalService.toggleSelection(pitch);
     }
       
     selectAllPitches(event: any) {
@@ -83,6 +85,7 @@ export class ListComponent implements OnInit {
         
         this.filteredListView.forEach((pitch:any) => {
             pitch.selected = isChecked;
+            this.mlbPortalService.toggleSelection(pitch);
         });
     }
 

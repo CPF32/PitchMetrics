@@ -80,7 +80,7 @@
     color: #323232 !important;
 }
 
-@media screen and (max-width: 599px) {
+@media screen and (max-width: 699px) {
     .list-wrapper{
         width: 100vw;
     }

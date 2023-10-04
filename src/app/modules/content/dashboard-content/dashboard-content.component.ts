@@ -31,7 +31,7 @@ export class DashboardContentComponent {
   constructor(private router: Router, private mlbPortalService: MLBPortalService){}
 
   ngOnInit(): void {
-    this.mobile = window.innerWidth <= 599;
+    this.mobile = window.innerWidth <= 699;
 
     this.mlbPortalService.getPitchesData().subscribe(data => {
       const gameDate = sessionStorage.getItem('gameDate');
@@ -99,6 +99,6 @@ export class DashboardContentComponent {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any): void {
-    this.mobile = window.innerWidth <= 599;
+    this.mobile = window.innerWidth <= 699;
   }
 }

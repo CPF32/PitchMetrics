@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 
 import { MatToolbarModule } from '@angular/material/toolbar'
 
+import { PlotlyViaCDNModule } from 'angular-plotly.js';
+
 import { VisualizerComponent } from './visualizer.component';
 import { MLBPortalService } from '../../services/mlb-portal.service';
 
@@ -14,6 +16,8 @@ import { MLBPortalService } from '../../services/mlb-portal.service';
     ],
     imports: [
         MatToolbarModule,
+
+        PlotlyViaCDNModule,
 
         CommonModule,
         RouterModule, 

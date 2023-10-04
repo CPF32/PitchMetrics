@@ -1,6 +1,7 @@
 <div class="list-wrapper">
     <div class="filter">
         <div class="sortBubble">
+
             <div class="selectPitcher">
                 <mat-form-field class="formFieldChoice">
                     <mat-label class="label">Select Pitcher</mat-label>
@@ -13,6 +14,7 @@
     
                 </mat-form-field>
             </div>
+
             <div class="selectPitchType">
                 <mat-form-field class="formFieldChoice">
                     <mat-label class="label">Pitch Type</mat-label>
@@ -25,9 +27,11 @@
     
                 </mat-form-field>
             </div>
+
         </div>
     </div>
     <div class="selection">
+
         <mat-table [dataSource]="dataSource">
             <ng-container matColumnDef="select">
                 <mat-header-cell *matHeaderCellDef>
@@ -56,5 +60,6 @@
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
             <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
         </mat-table>
+        
     </div>
 </div>

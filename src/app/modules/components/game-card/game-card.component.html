@@ -1,10 +1,12 @@
 <div class="gc-wrapper">
 	<div class="gc-box" [@flipState]="flip" (click)="toDashboard(gameData)">
 		<div class="gc-box__side gc-box__front">
+
             <div class="header">
                 <mat-icon class="icon pad" (click)="toggleFlip($event)">flip_to_back</mat-icon>
                 <div class="date">{{dayMonthYear}}</div>
-            </div>            
+            </div>        
+
             <div class="content">
                 <div class="left" [style.backgroundColor]="gameData.homeTeamBG">
                     <img class="homeLogo" [src]="gameData.homeTeamLogo">
@@ -13,12 +15,15 @@
                     <img class="awayLogo" [src]="gameData.awayTeamLogo">
                 </div>
             </div>
+
 		</div>
 		<div class="gc-box__side gc-box__back">
+
             <div class="header">
                 <mat-icon class="icon pad" (click)="toggleFlip($event)">flip_to_back</mat-icon>
                 <div class="date">Pitcher Log</div>
             </div>   
+
             <div class="backlist">
                 <ul>
                     <li *ngFor="let pitcher of gameData.pitchers; let i = index" (click)="storePitcher(pitcher.pitcherName, gameData)">
@@ -27,6 +32,7 @@
                     </li>
                 </ul>
             </div>
+            
 		</div>
 	</div>
 </div>

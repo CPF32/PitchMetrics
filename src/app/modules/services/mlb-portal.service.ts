@@ -7,23 +7,38 @@ import { environment } from 'src/environments/environment';
 @Injectable()
 export class MLBPortalService {
     pitchesUrl: string = environment.gameDataURL
+    selectedData: any[] = [];
+
     pitchersDataSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
     pitchersData$: Observable<any[]> = this.pitchersDataSubject.asObservable();
+
+    graphDataSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+    graphData$: Observable<any[]> = this.graphDataSubject.asObservable();
     
     constructor(private http: HttpClient) {}
-
-    getPitchesData(): Observable<any> {
-        return this.http.get(this.pitchesUrl);
-    }
 
     leaveToMLB() {
         window.location.href = 'https://www.mlb.com/astros';
     }
+    
+    getPitchesData(): Observable<any> {
+        return this.http.get(this.pitchesUrl);
+    }
 
-   
-  
     setPitchersData(data: any[]): void {
       this.pitchersDataSubject.next(data);
+    }
+
+    toggleSelection(data: any): void {
+        const index = this.selectedData.findIndex(item => item.number === data.number);
+
+        if (index !== -1) {
+            this.selectedData.splice(index, 1);
+        }
+        else {
+            this.selectedData.push(data);
+        }
+        this.graphDataSubject.next(this.selectedData);
     }
 
     setTeamBG(team: string){

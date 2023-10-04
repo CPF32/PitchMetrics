@@ -36,7 +36,7 @@ export class ScheduleContentComponent {
             homeTeam: home_team_name,
             awayTeam: away_team_name,
             gameTime: game_date,
-            pitchers: [], // Initialize an empty array for pitchers in each game
+            pitchers: [],
           };
         }
   
@@ -50,7 +50,6 @@ export class ScheduleContentComponent {
         }
       });
   
-      // Create an array of selectable games
       this.selectableGames = Object.values(games);
   
       this.selectableGames.forEach((game: any) => {
