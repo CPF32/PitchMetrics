@@ -21,9 +21,9 @@
             </div>   
             <div class="backlist">
                 <ul>
-                    <li *ngFor="let pitcher of gameData.pitchers; let i = index">
+                    <li *ngFor="let pitcher of gameData.pitchers; let i = index" (click)="storePitcher(pitcher.pitcherName, gameData)">
                         <span class="number">{{ i + 1 }}</span>
-                        <span class="name">{{ pitcher }}</span>
+                        <span class="name">{{ pitcher.pitcherName }}</span>
                     </li>
                 </ul>
             </div>

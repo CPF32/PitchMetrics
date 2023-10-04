@@ -20,6 +20,7 @@ import { VisualizerModule } from '../../components/visualizer/visualizer.module'
 export class DashboardContentComponent {
 
   gameData: any[] = []
+  pitchers: any [] = []
 
   constructor(private router: Router, private mlbPortalService: MLBPortalService){}
 
@@ -28,7 +29,54 @@ export class DashboardContentComponent {
       const gameDate = sessionStorage.getItem('gameDate');
 
       this.gameData = data.queryResults.row.filter((row: any) => row.game_date === gameDate);
-      console.log(this.gameData);
+      
+      this.gameData.forEach((row: any) => {
+        const existingPitcher = this.pitchers.find(pitcher => pitcher.pitcherId === row.pitcher_id);
+
+        if (!existingPitcher) {
+          const newPitcher = {
+            pitcherId: row.pitcher_id,
+            pitcherName: row.pitcher_name,
+            pitches: [],
+            uniquePitchTypes: []
+          };
+
+          this.pitchers.push(newPitcher);
+        }
+
+        const existingPitcherIndex = this.pitchers.findIndex(pitcher => pitcher.pitcherId === row.pitcher_id);
+
+        const pitchInfo = {
+          pitch_number: row.event_pitch_number,
+          pitch_name: row.pitch_name,
+          init_accel_x: row.init_accel_x,
+          init_accel_y: row.init_accel_y,
+          init_accel_z: row.init_accel_z,
+          init_pos_x: row.init_pos_x,
+          init_pos_y: row.init_pos_y,
+          init_pos_z: row.init_pos_z,
+          init_vel_x: row.init_vel_x,
+          init_vel_y: row.init_vel_y,
+          init_vel_z: row.init_vel_z,
+          initial_speed: row.initial_speed,
+          plate_speed: row.plate_speed,
+          plate_x: row.plate_x,
+          plate_y: row.plate_y,
+          plate_z: row.plate_z,
+          sv_pitch_id: row.sv_pitch_id,
+          sz_bottom: row.sz_bottom,
+          sz_top: row.sz_top,
+        };
+
+        this.pitchers[existingPitcherIndex].pitches.push(pitchInfo);
+
+        if (!this.pitchers[existingPitcherIndex].uniquePitchTypes.includes(row.pitch_name)) {
+          this.pitchers[existingPitcherIndex].uniquePitchTypes.push(row.pitch_name);
+        }
+      });
+
+      this.mlbPortalService.setPitchersData(this.pitchers);
+
     })
   }
 

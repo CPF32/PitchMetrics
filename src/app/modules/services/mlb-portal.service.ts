@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 
 @Injectable()
 export class MLBPortalService {
     pitchesUrl: string = environment.gameDataURL
-
+    pitchersDataSubject: BehaviorSubject<any[]> = new BehaviorSubject<any[]>([]);
+    pitchersData$: Observable<any[]> = this.pitchersDataSubject.asObservable();
+    
     constructor(private http: HttpClient) {}
 
     getPitchesData(): Observable<any> {
@@ -16,6 +18,12 @@ export class MLBPortalService {
 
     leaveToMLB() {
         window.location.href = 'https://www.mlb.com/astros';
+    }
+
+   
+  
+    setPitchersData(data: any[]): void {
+      this.pitchersDataSubject.next(data);
     }
 
     setTeamBG(team: string){

@@ -1,8 +1,61 @@
 <div class="list-wrapper">
     <div class="filter">
-
+        <div class="sortBubble">
+            <div class="selectPitcher">
+                <mat-form-field [style.width.px]=140>
+                    <mat-label class="label">Select Pitcher</mat-label>
+    
+                    <mat-select panelClass="panel" [(ngModel)]="pitcherChoice" (ngModelChange)="updateUniquePitchTypes()">
+                        <mat-option *ngFor="let pitcher of pitchers" [value]="pitcher.pitcherName">
+                        {{ pitcher.pitcherName }}
+                        </mat-option>
+                    </mat-select>
+    
+                </mat-form-field>
+            </div>
+            <div class="selectPitchType">
+                <mat-form-field [style.width.px]=140>
+                    <mat-label class="label">Pitch Type</mat-label>
+    
+                    <mat-select panelClass="panel" [(ngModel)]="pitchType" (ngModelChange)="filterListView()">
+                        <mat-option *ngFor="let pitch of uniquePitchTypes" [value]="pitch">
+                        {{ pitch }}
+                        </mat-option>
+                    </mat-select>
+    
+                </mat-form-field>
+            </div>
+        </div>
     </div>
     <div class="selection">
+        <mat-table [dataSource]="dataSource">
+            <ng-container matColumnDef="select">
+                <mat-header-cell *matHeaderCellDef>
+                  <mat-checkbox (change)="selectAllPitches($event)"></mat-checkbox>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <mat-checkbox [(ngModel)]="element.selected" (ngModelChange)="togglePitchSelection(element)"></mat-checkbox>
+                </mat-cell>
+            </ng-container>
 
+            <ng-container matColumnDef="pitchNumber">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="pitch-number-column">#</mat-header-cell>
+                <mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</mat-cell>
+            </ng-container>
+            
+            <ng-container matColumnDef="pitchName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="pitch-name-column">Pitch</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="pitch-name-column">{{ element.pitch_name }}</mat-cell>
+            </ng-container>
+            
+            <ng-container matColumnDef="velocity">
+                <mat-header-cell *matHeaderCellDef mat-sort-header class="velocity-column">Velocity</mat-header-cell>
+                <mat-cell *matCellDef="let element" class="velocity-column">{{ element.initial_speed | number:'1.2-2'}}</mat-cell>
+            </ng-container>
+            
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
     </div>
 </div>
+  

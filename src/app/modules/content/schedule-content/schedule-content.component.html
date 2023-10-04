@@ -2,7 +2,7 @@
     <toolbar></toolbar>
     <div class="content">
         <game-card class="card" *ngFor="let game of selectableGames"
-        [gameData]="game">
+        [gameData]="game" [pitchers]="pitchers">
         </game-card>
     </div>
     <img class="astro-logo" src="../../../../assets/images/good-guys/astros_logo.png" (click)="mlbExit()">

@@ -25,6 +25,7 @@ import { MLBPortalService } from '../../services/mlb-portal.service';
 export class GameCardComponent implements OnInit {
 
   @Input() gameData!: any
+  @Input() pitchers!: any[]
 
   dayMonthYear: string = ''
 
@@ -47,6 +48,11 @@ export class GameCardComponent implements OnInit {
     sessionStorage.setItem('gameDate', data.gameTime)
 
     this.router.navigate(['/dashboard'])
+  }
+
+  storePitcher(pitcher: string, data: any){
+    sessionStorage.setItem('pitcher', pitcher)
+    this.toDashboard(data)
   }
 
 }

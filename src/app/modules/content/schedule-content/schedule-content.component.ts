@@ -17,7 +17,7 @@ import { CommonModule } from '@angular/common';
 export class ScheduleContentComponent {
 
   pitchesData: any 
-  prevPitcher: string = ''
+  pitchers: any[] = []
   selectableGames: any[] = []
 
   constructor(private router: Router, private mlbPortalService: MLBPortalService){}
@@ -25,39 +25,43 @@ export class ScheduleContentComponent {
   ngOnInit(): void {
     this.mlbPortalService.getPitchesData().subscribe(data => {
       this.pitchesData = data.queryResults.row;
-
-      let games: any= {}
-
+  
+      let games: any = {};
+  
       this.pitchesData.forEach((item: any) => {
-        const { game_pk, home_team_name, away_team_name, game_date, pitcher_name } = item;
-
-        
+        const { game_pk, home_team_name, away_team_name, game_date, pitcher_id, pitcher_name } = item;
+  
         if (!games[game_pk]) {
           games[game_pk] = {
             homeTeam: home_team_name,
             awayTeam: away_team_name,
             gameTime: game_date,
-            pitchers: [],
-
+            pitchers: [], // Initialize an empty array for pitchers in each game
           };
         }
-        
-        if (this.prevPitcher !== pitcher_name) {
-          games[game_pk].pitchers.push(pitcher_name);
-          this.prevPitcher = pitcher_name;
+  
+        const existingPitcher = games[game_pk].pitchers.find((pitcher:any) => pitcher.pitcherId === pitcher_id);
+  
+        if (!existingPitcher) {
+          games[game_pk].pitchers.push({
+            pitcherId: pitcher_id,
+            pitcherName: pitcher_name,
+          });
         }
       });
-
+  
+      // Create an array of selectable games
       this.selectableGames = Object.values(games);
-
+  
       this.selectableGames.forEach((game: any) => {
         game.homeTeamBG = this.mlbPortalService.setTeamBG(game.homeTeam);
         game.homeTeamLogo = this.mlbPortalService.setTeamLogo(game.homeTeam);
         game.awayTeamBG = this.mlbPortalService.setTeamBG(game.awayTeam);
-        game.awayTeamLogo =this.mlbPortalService.setTeamLogo(game.awayTeam);
+        game.awayTeamLogo = this.mlbPortalService.setTeamLogo(game.awayTeam);
       });
     });
   }
+  
 
   mlbExit(){
     this.mlbPortalService.leaveToMLB()
