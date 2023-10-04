@@ -74,8 +74,8 @@ export class ListComponent implements OnInit {
         this.dataSource = new MatTableDataSource<any>(this.filteredListView);
     }
 
-    togglePitchSelection(pitch: any) {
-        pitch.selected = !pitch.selected;
+    togglePitchSelection(pitch: any, event:any) {
+        pitch.selected = event.checked;
     }
       
     selectAllPitches(event: any) {

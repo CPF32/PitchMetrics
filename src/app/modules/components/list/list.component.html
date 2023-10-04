@@ -34,7 +34,7 @@
                   <mat-checkbox (change)="selectAllPitches($event)"></mat-checkbox>
                 </mat-header-cell>
                 <mat-cell *matCellDef="let element">
-                    <mat-checkbox [(ngModel)]="element.selected" (ngModelChange)="togglePitchSelection(element)"></mat-checkbox>
+                    <mat-checkbox [(ngModel)]="element.selected" (change)="togglePitchSelection(element, $event)"></mat-checkbox>
                 </mat-cell>
             </ng-container>
 
