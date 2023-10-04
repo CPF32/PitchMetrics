@@ -1,12 +1,17 @@
 <div class="dashboard-wrapper">
     <toolbar></toolbar>
     <div class="content">
-        <list class="list">
+        <list *ngIf="open" class="list">
 
         </list>
         <visualizer class="vis">
 
         </visualizer>
     </div>
-    <img class="astro-logo" src="../../../../assets/images/good-guys/astros_logo.png" (click)="mlbExit()">
+    <button *ngIf="mobile && open" (click)="toggleList()" mat-fab class="fabClose"> 
+        <mat-icon>navigate_before</mat-icon>
+    </button>
+    <button *ngIf="mobile && !open" (click)="toggleList()" mat-fab class="fabClose"> 
+        <mat-icon>navigate_next</mat-icon>
+    </button>
 </div>

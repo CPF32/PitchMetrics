@@ -2,7 +2,7 @@
     <div class="filter">
         <div class="sortBubble">
             <div class="selectPitcher">
-                <mat-form-field [style.width.px]=140>
+                <mat-form-field class="formFieldChoice">
                     <mat-label class="label">Select Pitcher</mat-label>
     
                     <mat-select panelClass="panel" [(ngModel)]="pitcherChoice" (ngModelChange)="updateUniquePitchTypes()">
@@ -14,7 +14,7 @@
                 </mat-form-field>
             </div>
             <div class="selectPitchType">
-                <mat-form-field [style.width.px]=140>
+                <mat-form-field class="formFieldChoice">
                     <mat-label class="label">Pitch Type</mat-label>
     
                     <mat-select panelClass="panel" [(ngModel)]="pitchType" (ngModelChange)="filterListView()">
@@ -40,7 +40,7 @@
 
             <ng-container matColumnDef="pitchNumber">
                 <mat-header-cell *matHeaderCellDef mat-sort-header class="pitch-number-column">#</mat-header-cell>
-                <mat-cell *matCellDef="let element; let i = index">{{ i + 1 }}</mat-cell>
+                <mat-cell *matCellDef="let element;">{{ element.number }}</mat-cell>
             </ng-container>
             
             <ng-container matColumnDef="pitchName">
@@ -58,4 +58,3 @@
         </mat-table>
     </div>
 </div>
-  

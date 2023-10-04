@@ -2,7 +2,6 @@
     display: flex;
     flex-direction: column;
     height: 100%;
-    width: 100%;
     overflow-y: scroll;
     background-color: #fff;
     color: #323232;
@@ -34,7 +33,11 @@
 }
 
 .panel {
-    width: 140px !important;
+    width: 155px !important;
+}
+
+.formFieldChoice{
+    width: 155px !important;
 }
 
 .panel::-webkit-scrollbar{
@@ -75,6 +78,49 @@
 
 .label {
     color: #323232 !important;
+}
+
+@media screen and (max-width: 599px) {
+    .list-wrapper{
+        width: 100vw;
+    }
+
+    .sortBubble {
+        display: flex;
+        background-color: #1C3049;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .mat-mdc-row:hover .mat-mdc-cell {
+        background-color: #f4f4f4;
+    }
+    
+    .filter {
+        position: fixed;
+        background-color: #fff;
+        z-index: 1000;
+        display: flex;
+        width: 100%;
+        height: 76px;
+        justify-content: center;
+    }
+
+    .panel {
+        width: 100% !important;
+    }
+    
+    .formFieldChoice{
+        width: 100% !important;
+    }
+
+    .selectPitcher {
+        width: 40%;
+    }
+    
+    .selectPitchType {
+       width: 40%;
+    }
 }
 
 

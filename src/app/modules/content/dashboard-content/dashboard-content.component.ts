@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, HostListener, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToolbarModule } from '../../components/toolbar/toolbar.module';
 import { MLBPortalService } from '../../services/mlb-portal.service';
@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { GameCardModule } from '../../components/game-card/game-card.module';
 import { ListModule } from '../../components/list/list.module';
 import { VisualizerModule } from '../../components/visualizer/visualizer.module';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 
 @Component({
@@ -14,10 +16,14 @@ import { VisualizerModule } from '../../components/visualizer/visualizer.module'
   styleUrls: ['./dashboard-content.component.css'],
   standalone: true,
   providers: [MLBPortalService],
-  imports: [ToolbarModule, GameCardModule, ListModule, VisualizerModule, CommonModule]
+  imports: [ToolbarModule, GameCardModule, ListModule, VisualizerModule, CommonModule, MatIconModule, MatButtonModule]
 })
 
 export class DashboardContentComponent {
+  
+  mobile: boolean = false
+  open: boolean = true
+  listWidth: string ='350px'
 
   gameData: any[] = []
   pitchers: any [] = []
@@ -25,6 +31,8 @@ export class DashboardContentComponent {
   constructor(private router: Router, private mlbPortalService: MLBPortalService){}
 
   ngOnInit(): void {
+    this.mobile = window.innerWidth <= 599;
+
     this.mlbPortalService.getPitchesData().subscribe(data => {
       const gameDate = sessionStorage.getItem('gameDate');
 
@@ -82,5 +90,15 @@ export class DashboardContentComponent {
 
   mlbExit(){
     this.mlbPortalService.leaveToMLB()
+  }
+
+  toggleList(){
+    this.open = !this.open
+    
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any): void {
+    this.mobile = window.innerWidth <= 599;
   }
 }

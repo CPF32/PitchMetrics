@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, HostListener, Input, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgModel } from '@angular/forms';
 import { MatTableDataSource } from '@angular/material/table';
@@ -13,6 +13,7 @@ import { MLBPortalService } from '../../services/mlb-portal.service';
 
 export class ListComponent implements OnInit {
 
+    // would type these with more time
     pitchers: any[] = []
     pitcherChoice: any
     pitchType: any
@@ -43,9 +44,10 @@ export class ListComponent implements OnInit {
             
             this.uniquePitchTypes = [...new Set(this.pitcherData.pitches.map((pitch:any) => pitch.pitch_name))];
 
-            this.listView = this.pitcherData.pitches.map((pitch: any) => {
+            this.listView = this.pitcherData.pitches.map((pitch: any, index: number) => {
                 return {
                   ...pitch,
+                  number: index + 1,
                   selected: false 
                 };
             });
@@ -55,7 +57,7 @@ export class ListComponent implements OnInit {
             this.filteredListView.forEach((pitch:any) => {
                 pitch.selected = false;
             });
-            
+
             this.filterListView()
 
             this.dataSource = new MatTableDataSource<any>(this.filteredListView);
@@ -69,7 +71,6 @@ export class ListComponent implements OnInit {
         else {
             this.filteredListView = [...this.listView];
         }
-        console.log(this.filteredListView)
         this.dataSource = new MatTableDataSource<any>(this.filteredListView);
     }
 
